@@ -1,0 +1,59 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js" // keep default output so imports work: import { PrismaClient } from "@prisma/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL") // set DATABASE_URL="file:./dev.db" in .env
+}
+
+model User {
+  id        String    @id @default(cuid())
+  email     String?   @unique
+  createdAt DateTime  @default(now())
+  accounts  Account[]
+}
+
+model Account {
+  id           String   @id @default(cuid()) // in code we upsert with `${user.id}-google`; this is fine
+  provider     String
+  accessToken  String
+  refreshToken String
+  expiryDate   DateTime
+  scope        String?
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([provider])
+}
+
+model SenderProfile {
+  id             String   @id @default(cuid())
+  email          String   @unique
+  preferredTone  String?     // e.g., "concise, warm, assertive"
+  preferredLang  String?     // "en", "ja", etc.
+  greeting       String?     // "Hi {first}", "Dear {full}"
+  closing        String?     // "Best, Kanishk"
+  mustUse        String?     // CSV of phrases to include
+  mustAvoid      String?     // CSV of phrases to avoid
+  avgLength      Int?        // target body length in words
+  editsCount     Int         @default(0)
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+}
+
+model StyleExample {
+  id         String   @id @default(cuid())
+  sender     String
+  original   String   // model draft
+  edited     String   // your final text
+  editDelta  Int?     // Levenshtein distance
+  createdAt  DateTime @default(now())
+}

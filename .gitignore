@@ -1,0 +1,93 @@
+# -----------------------------
+# Node / Package managers
+# -----------------------------
+node_modules/
+.pnp.*
+.pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+bun.lockb
+
+# -----------------------------
+# Next.js / Vercel
+# -----------------------------
+.next/
+.next/cache/
+out/
+.vercel/
+
+# -----------------------------
+# Build artifacts
+# -----------------------------
+dist/
+build/
+*.tsbuildinfo
+
+# -----------------------------
+# Env & secrets
+# (commit an example file instead)
+# -----------------------------
+.env
+.env.*
+!.env.example
+
+# -----------------------------
+# Logs
+# -----------------------------
+logs/
+*.log
+*.log.*
+*.pid
+*.pid.lock
+
+# -----------------------------
+# Caches
+# -----------------------------
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+.turbo/
+
+# -----------------------------
+# Prisma
+# - keep migrations tracked
+# - ignore local sqlite databases
+# - ignore custom generated client dirs
+# -----------------------------
+# local sqlite dbs
+*.sqlite
+*.sqlite-journal
+*.sqlite3
+*.db
+*.db-journal
+prisma/*.sqlite*
+prisma/*.db*
+# keep migrations in git
+!prisma/migrations/**
+
+# prisma generated client (your schema uses ../generated/prisma)
+generated/
+**/generated/prisma/
+src/generated/prisma/
+
+# -----------------------------
+# Editors / OS cruft
+# -----------------------------
+.vscode/
+.idea/
+.history/
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+*.swp
+*.swo
+
+# -----------------------------
+# Temp & misc
+# -----------------------------
+tmp/
+temp/
+*.local
