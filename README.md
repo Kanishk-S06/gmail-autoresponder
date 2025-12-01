@@ -136,3 +136,8 @@ MIT License.
 ## ⭐ Support
 
 If you find this project helpful, please ⭐ star the repository!
+
+## 🧩 Most Challenging Problem Solved
+
+One of the most challenging problems I solved while building **ReplyPilot** was creating a truly **context‑aware, thread‑safe Gmail auto‑responder**. Gmail threads often contain inconsistent formatting due to nested replies, MIME blocks, signatures, and forwarded content, making clean reconstruction extremely difficult. I built a custom **RFC‑822–aware parser** that extracts only meaningful, user‑written text from an email while removing noise like quoted replies and system artifacts. Another major challenge was ensuring LLM‑generated drafts preserved **correct Gmail threading**, which required manually attaching accurate `In-Reply-To` and `References` headers. I also designed a **“learn‑from‑my‑edit” loop**, where a user’s edits to generated drafts update a per‑sender behavioral profile to improve tone and accuracy over time. Balancing Gmail API constraints, LLM behavior shaping, and robust parsing logic made this one of the most technically intricate problems I’ve solved recently.
+
